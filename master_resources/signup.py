@@ -1,15 +1,8 @@
 from flask_restful import Resource, reqparse
 import logic.email_check as email_check
+from logic.savingtodatabase import save_data
 
 
-database = []
-
-def save_data(new_data):
-    database
-    database.append(new_data)
-    # try:
-    # except:
-    #     database = [new_data]
 
 class SignUp(Resource):
     def put(self):
@@ -35,8 +28,10 @@ class SignUp(Resource):
         elif not is_constraint_fulfilled:
             return {'messages': 'your user / pass / fullname is less than 5 characters'}, 400
         elif all_constraints:
-            save_data(self.signup_data)
-            print(database)
-            return {'messages': 'your data have been successfully recorded'}, 200
+            isSaving = save_data(self.signup_data)
+            if isSaving:
+                return {'messages': 'your data have been successfully recorded'}, 200
+            else:
+                return {'messages': 'bad request'}, 400
         else:
             return {'messages': 'bad requests'}, 400

@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
-from master_resources.signup import SignUp, database
+from master_resources.signup import SignUp
 from master_resources.signin import SignIn
 from master_resources.getdata import GetData
 
