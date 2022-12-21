@@ -32,6 +32,6 @@ class SignUp(Resource):
             if isSaving:
                 return {'messages': 'your data have been successfully recorded'}, 200
             else:
-                return {'messages': 'bad request'}, 400
+                return {'messages': 'request rejected'}, 400
         else:
             return {'messages': 'bad requests'}, 400
